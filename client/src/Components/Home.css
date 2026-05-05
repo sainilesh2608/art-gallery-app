@@ -1,0 +1,514 @@
+/* ============================================
+   HOME PAGE STYLES
+   Page-specific styles for Home.jsx
+   ============================================ */
+
+/* ---- Hero Section ---- */
+.home-hero {
+  width: 100%;
+  min-height: 340px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem 2rem;
+  overflow: hidden;
+  background: var(--clr-stone);
+}
+
+/* Moody dark background overlay effect */
+.home-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(90,122,110,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 40%, rgba(90,122,110,0.12) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(44,40,37,0.55) 0%, rgba(44,40,37,0.7) 100%);
+  z-index: 1;
+}
+
+/* Hero BG image placeholder — replaced with CSS texture */
+.home-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E"),
+    linear-gradient(160deg, #6b7c70 0%, #4a5c52 30%, #3a4a40 60%, #5c6e62 100%);
+  background-size: 200px 200px, cover;
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 640px;
+}
+
+.home-hero-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--clr-gold-light);
+  margin-bottom: 0.6rem;
+  animation: fadeUp 0.7s ease both;
+}
+
+.home-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--clr-warm-white);
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+
+.home-hero-sub {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(245,240,232,0.72);
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+  margin-bottom: 1.6rem;
+  animation: fadeUp 1s 0.2s ease both;
+}
+
+.home-hero-btn {
+  animation: fadeUp 1.1s 0.3s ease both;
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  border: 1px solid var(--clr-gold-light);
+  color: var(--clr-gold-light);
+  padding: 9px 22px;
+  display: inline-block;
+  transition: background var(--transition), color var(--transition);
+  cursor: pointer;
+  background: transparent;
+}
+.home-hero-btn:hover {
+  background: var(--clr-gold);
+  color: white;
+  border-color: var(--clr-gold);
+}
+
+/* ---- Mosaic Grid ---- */
+.home-mosaic-section {
+  width: 100%;
+  background: var(--clr-charcoal);
+  padding: 0;
+}
+
+.home-mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 3px;
+}
+
+.mosaic-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.mosaic-item:hover .mosaic-img {
+  transform: scale(1.06);
+  filter: brightness(1.08) saturate(1.1);
+}
+
+.mosaic-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s ease;
+  display: block;
+}
+
+/* Mosaic item — colored placeholder blocks */
+.mosaic-placeholder {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.5s ease;
+}
+
+.mosaic-item:hover .mosaic-placeholder {
+  transform: scale(1.06);
+  filter: brightness(1.1) saturate(1.12);
+}
+
+/* ---- Framed Artwork Section ---- */
+.home-framed-section {
+  width: 100%;
+  background: var(--clr-stone);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.home-framed-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(44,40,37,0.45) 0%, rgba(60,50,44,0.6) 100%);
+}
+
+.home-framed-title {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--clr-warm-white);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  animation: fadeUp 0.8s ease both;
+}
+
+.home-framed-sub {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: rgba(245,240,232,0.65);
+  text-align: center;
+  letter-spacing: 0.03em;
+  margin-bottom: 2rem;
+}
+
+.home-framed-row {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.framed-art {
+  border: 10px solid;
+  border-image: linear-gradient(135deg, #c9a96e, #e8d4a8, #c9a96e, #a87f45) 1;
+  box-shadow:
+    0 0 0 2px rgba(201,169,110,0.3),
+    var(--shadow-deep),
+    inset 0 0 12px rgba(0,0,0,0.15);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.framed-art:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 0 0 2px rgba(201,169,110,0.5),
+    0 16px 56px rgba(44,40,37,0.35),
+    inset 0 0 12px rgba(0,0,0,0.1);
+}
+
+.framed-art-sm { width: 130px; height: 100px; }
+.framed-art-md { width: 170px; height: 130px; }
+.framed-art-lg { width: 210px; height: 165px; }
+
+.framed-art-inner {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- Print Drop Section ---- */
+.home-print-drop {
+  width: 100%;
+  min-height: 340px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 2rem;
+  overflow: hidden;
+}
+
+.home-print-drop-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #c8b8b0 0%, #b8a898 40%, #a89888 100%);
+}
+
+/* Soft bokeh circles */
+.home-print-drop-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(180,100,80,0.22) 0%, transparent 40%),
+    radial-gradient(circle at 70% 50%, rgba(180,80,60,0.18) 0%, transparent 40%);
+}
+
+.home-print-drop-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 520px;
+}
+
+.home-print-drop-tag {
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--clr-teal-dark);
+  margin-bottom: 0.5rem;
+}
+
+.home-print-drop-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--clr-charcoal);
+  margin-bottom: 0.7rem;
+  line-height: 1.2;
+}
+
+.home-print-drop-body {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--clr-charcoal);
+  opacity: 0.72;
+  margin-bottom: 1.6rem;
+  line-height: 1.7;
+}
+
+/* Raspberry / fruit visual decoration */
+.fruit-deco {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ---- Featured Print Banner ---- */
+.home-featured-banner {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.home-featured-banner-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    #d8c8a8 0%,
+    #c8b890 30%,
+    #b8a878 60%,
+    #e0d8b8 100%
+  );
+  transition: transform 0.6s ease;
+}
+
+.home-featured-banner:hover .home-featured-banner-bg {
+  transform: scale(1.03);
+}
+
+/* Sunflower imagery rendered with CSS */
+.sunflower-bar {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  overflow: hidden;
+}
+
+.home-featured-cta {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-display);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border: 1px solid var(--clr-charcoal);
+  color: var(--clr-charcoal);
+  padding: 7px 18px;
+  background: rgba(250,247,242,0.85);
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+}
+.home-featured-cta:hover {
+  background: var(--clr-charcoal);
+  color: var(--clr-warm-white);
+}
+
+/* ---- Botanical Full-bleed ---- */
+.home-botanical {
+  width: 100%;
+  min-height: 420px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.home-botanical-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #7a9a78 0%, #5c7a58 40%, #3a5c38 80%, #2c4830 100%);
+  transition: transform 0.8s ease;
+}
+
+.home-botanical:hover .home-botanical-bg {
+  transform: scale(1.02);
+}
+
+/* Leaf vein overlay */
+.home-botanical-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 70%, rgba(30,60,30,0.4) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 30%, rgba(80,120,70,0.3) 0%, transparent 45%);
+}
+
+/* ---- Artist Profile Section ---- */
+.home-artist-section {
+  width: 100%;
+  background: var(--clr-warm-white);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.home-artist-cards {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  max-width: 860px;
+}
+
+.artist-card {
+  flex: 1 1 220px;
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.artist-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  overflow: hidden;
+  position: relative;
+}
+
+.artist-card-img-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.artist-card:hover .artist-card-img-inner {
+  transform: scale(1.04);
+}
+
+.artist-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--clr-charcoal);
+}
+
+.artist-card-body {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--clr-bark);
+  line-height: 1.65;
+}
+
+/* ---- Tulip Footer Banner ---- */
+.home-tulip-banner {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-tulip-banner-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #c84838 0%, #e05040 30%, #b83828 60%, #901818 100%);
+}
+
+.home-tulip-banner-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 60% 80%, rgba(255,120,80,0.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 20%, rgba(200,50,30,0.3) 0%, transparent 50%);
+}
+
+/* ---- Scroll-trigger animation class ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.35s; }
+.reveal-delay-4 { transition-delay: 0.5s; }
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .home-mosaic-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .home-hero { min-height: 260px; }
+  .home-framed-row { gap: 0.7rem; }
+  .framed-art-sm { width: 90px; height: 70px; }
+  .framed-art-md { width: 115px; height: 90px; }
+  .framed-art-lg { width: 140px; height: 110px; }
+}
+
+@media (max-width: 480px) {
+  .home-mosaic-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
