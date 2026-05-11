@@ -3,6 +3,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Signup from "./pages/Admin/Signup/Signup";
 import AdminDashboard from "./pages/Admin/Dashboard/Dashboard";
+import MyOrders from "./pages/MyOrders/MyOrders";
 
 const PrivateRoute = ({ children, role }) => {
   const token = localStorage.getItem("token");
@@ -24,6 +25,14 @@ export default function App() {
           element={
             <PrivateRoute role="ADMIN">
               <AdminDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my-orders"
+          element={
+            <PrivateRoute>
+              <MyOrders />
             </PrivateRoute>
           }
         />

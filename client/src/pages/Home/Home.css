@@ -345,6 +345,57 @@ button {
 .site-top-bar .dropdown-item:hover {
   background: #f5f5f5;
 }
+
+/* ---- User Dropdown Menu ---- */
+.user-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 4px;
+}
+
+.user-info {
+  padding: 12px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #eee;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--clr-charcoal);
+  text-align: center;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #eee;
+}
+
+.dropdown-option {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--clr-charcoal);
+  transition: background-color 0.2s;
+}
+
+.dropdown-option:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-option.logout {
+  color: #d32f2f;
+}
+
+.dropdown-option.logout:hover {
+  background-color: #ffebee;
+}
 /* ---- Hero Section ---- */
 .home-hero {
   width: 100%;

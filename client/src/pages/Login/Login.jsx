@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../api/axios";
+import { isLoggedIn } from "../../utils/auth";
 import "./Login.css";
 
 
@@ -62,6 +63,13 @@ function Field({ label, type = "text", placeholder, value, onChange, error, icon
 export default function Login() {
   const [mode, setMode] = useState("login");
   const navigate = useNavigate();
+
+  // Auto-redirect if already logged in
+  useEffect(() => {
+    if (isLoggedIn()) {
+      navigate("/");
+    }
+  }, [navigate]);
 
   // Login
   const [loginEmail, setLoginEmail] = useState("");
