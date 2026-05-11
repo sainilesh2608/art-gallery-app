@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";
+import api from "../../../api/axios";
 
 const MailIcon = () => (
   <svg className="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
@@ -39,15 +40,27 @@ export default function Signup() {
   const [errors, setErrors] = useState({});
   const [done, setDone] = useState(false);
 
-  const handleLogin = () => {
-    const e = {};
-    if (!email || !/\S+@\S+\.\S+/.test(email)) e.email = "Enter a valid email address";
-    if (!password) e.password = "Password is required";
-    if (Object.keys(e).length) { setErrors(e); return; }
-    setErrors({});
-    setDone(true);
-    setTimeout(() => navigate("/"), 1000);
-  };
+const handleLogin = async () => {
+  const e = {};
+  if (!email || !/\S+@\S+\.\S+/.test(email)) e.email = "Enter a valid email address";
+  if (!password) e.password = "Password is required";
+  if (Object.keys(e).length) { setErrors(e); return; }
+
+  try {
+    const res = await api.post("/auth/login", { email, password });
+    localStorage.setItem("token", res.data.token);
+
+    // ✅ Redirect based on role
+    if (res.data.role === "ADMIN") {
+      setDone(true);
+      setTimeout(() => navigate("/admin/dashboard"), 1000);
+    } else {
+      setErrors({ general: "Not authorized as admin" });
+    }
+  } catch (err) {
+    setErrors({ general: err.response?.data?.message || "Login failed" });
+  }
+};
 
   return (
     <div className="login-page">

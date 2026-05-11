@@ -1,0 +1,41 @@
+.admin-dashboard {
+  padding: 2rem;
+  font-family: system-ui, sans-serif;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-welcome {
+  margin-left: 1rem;
+  font-size: 1rem;
+  color: #555;
+}
+
+.logout-btn {
+  background: #c62828;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: #b71c1c;
+}
+
+.admin-main {
+  margin-top: 2rem;
+}
+
+.admin-section {
+  margin-bottom: 2rem;
+}
+
+.admin-section h2 {
+  margin-bottom: 0.5rem;
+}

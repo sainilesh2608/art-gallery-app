@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import logo from "../../assets/abhijna-logo.svg";
-
+import api from "../../api/axios";
 import "./Login.css";
 
 
@@ -91,29 +90,49 @@ export default function Login() {
     setSignupDone(false);
   };
 
-  const handleLogin = () => {
-    const e = {};
-    if (!loginEmail || !/\S+@\S+\.\S+/.test(loginEmail)) e.email = "Enter a valid email address";
-    if (!loginPw) e.pw = "Password is required";
-    if (Object.keys(e).length) { setLoginErrors(e); return; }
-    setLoginErrors({});
-    setLoginDone(true);
-   navigate("/");
-  };
 
-  const handleSignup = () => {
-    const e = {};
-    if (!firstName.trim()) e.firstName = "Required";
-    if (!lastName.trim()) e.lastName = "Required";
-    if (!signupEmail || !/\S+@\S+\.\S+/.test(signupEmail)) e.email = "Enter a valid email address";
-    if (!signupPw || signupPw.length < 8) e.pw = "Minimum 8 characters";
-    if (!confirmPw) e.confirmPw = "Please confirm your password";
-    else if (confirmPw !== signupPw) e.confirmPw = "Passwords do not match";
-    if (Object.keys(e).length) { setSignupErrors(e); return; }
-    setSignupErrors({});
-    setSignupDone(true);
+const handleLogin = async () => {
+  const e = {};
+  if (!loginEmail || !/\S+@\S+\.\S+/.test(loginEmail)) e.email = "Enter a valid email address";
+  if (!loginPw) e.pw = "Password is required";
+  if (Object.keys(e).length) { setLoginErrors(e); return; }
+
+  try {
+    const res = await api.post("/auth/login", { email: loginEmail, password: loginPw });
+    localStorage.setItem("token", res.data.token);
+
+    if (res.data.role === "ADMIN") navigate("/admin/dashboard");
+    else navigate("/");
+
+    setLoginDone(true);
+  } catch (err) {
+    setLoginErrors({ general: err.response?.data?.message || "Login failed" });
+  }
+};
+
+const handleSignup = async () => {
+  const e = {};
+  if (!firstName.trim()) e.firstName = "First name is required";
+  if (!lastName.trim()) e.lastName = "Last name is required";
+  if (!signupEmail || !/\S+@\S+\.\S+/.test(signupEmail)) e.email = "Enter a valid email address";
+  if (!signupPw || signupPw.length < 8) e.pw = "Password must be at least 8 characters";
+  if (signupPw !== confirmPw) e.confirmPw = "Passwords do not match";
+  if (Object.keys(e).length) { setSignupErrors(e); return; }
+
+  try {
+    const res = await api.post("/auth/register", {
+      name: `${firstName} ${lastName}`,
+      email: signupEmail,
+      password: signupPw,
+    });
+
+    localStorage.setItem("token", res.data.token);
     navigate("/");
-  };
+    setSignupDone(true);
+  } catch (err) {
+    setSignupErrors({ general: err.response?.data?.message || "Signup failed" });
+  }
+};
 
   return (
     <>
