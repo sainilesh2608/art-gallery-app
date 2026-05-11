@@ -1,5 +1,4 @@
 import "../../pages/Home/Home.css";
-import "./FeaturedSection.css";
 
 const artworks = [
   {

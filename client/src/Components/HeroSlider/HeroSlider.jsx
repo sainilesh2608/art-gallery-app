@@ -5,7 +5,6 @@ import img3 from "../../assets/slider3.jpeg";
 import img4 from "../../assets/slider4.png";
 import img5 from "../../assets/slider5.jpg";
 import "../../pages/Home/Home.css";
-import "./HeroSlider.css";
 
 const SLIDES = [img1, img2, img3, img4, img5];
 const INTERVAL = 5000;

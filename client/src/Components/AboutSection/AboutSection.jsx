@@ -1,5 +1,4 @@
 import "../../pages/Home/Home.css";
-import "./AboutSection.css";
 
 export default function AboutSection() {
   return (

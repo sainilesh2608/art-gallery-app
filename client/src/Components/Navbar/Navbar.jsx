@@ -2,7 +2,6 @@ import { useState } from "react";
 import currencyCodes from "currency-codes";
 import logo from "../../assets/abhijna-logo-white.svg";
 import "../../pages/Home/Home.css";
-import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {

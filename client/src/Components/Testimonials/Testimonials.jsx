@@ -1,5 +1,4 @@
 import "../../pages/Home/Home.css";
-import "./Testimonials.css";
 
 const testimonials = [
   {
