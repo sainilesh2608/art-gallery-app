@@ -108,6 +108,7 @@ const handleLogin = async () => {
   try {
     const res = await api.post("/auth/login", { email: loginEmail, password: loginPw });
     localStorage.setItem("token", res.data.token);
+    localStorage.setItem("userRole", res.data.role);
 
     if (res.data.role === "ADMIN") navigate("/admin/dashboard");
     else navigate("/");
@@ -135,6 +136,7 @@ const handleSignup = async () => {
     });
 
     localStorage.setItem("token", res.data.token);
+    localStorage.setItem("userRole", res.data.role);
     navigate("/");
     setSignupDone(true);
   } catch (err) {

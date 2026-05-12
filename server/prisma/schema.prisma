@@ -8,8 +8,7 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-   firstName String?   // new column
+  id        String   @id @default(uuid())
   name      String
   email     String   @unique
   password  String

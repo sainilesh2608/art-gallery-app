@@ -10,19 +10,36 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
-  // const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const userDropdownRef = useRef(null);
 
-  const [user, setUser] = useState(isLoggedIn() ? getUserFromToken() : null);
+  const [user, setUser] = useState(() => {
+    return isLoggedIn() ? getUserFromToken() : null;
+  });
 
-  // Load user info on component mount
-  // useEffect(() => {
-  //   if (isLoggedIn()) {
-  //     const userData = getUserFromToken();
-  //     setUser(userData);
-  //   }
-  // }, []);
+  // Update user info on component mount and listen for storage changes
+  useEffect(() => {
+    // Initial load
+    if (isLoggedIn()) {
+      const userData = getUserFromToken();
+      setUser(userData);
+    }
+
+    // Listen for storage changes (login/logout from other tabs)
+    const handleStorageChange = (e) => {
+      if (e.key === "token") {
+        if (isLoggedIn()) {
+          const userData = getUserFromToken();
+          setUser(userData);
+        } else {
+          setUser(null);
+        }
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
