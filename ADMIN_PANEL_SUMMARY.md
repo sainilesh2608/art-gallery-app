@@ -118,7 +118,7 @@
 1. Navigate to `/login`
 2. Use credentials:
    - Email: `admin@art.com`
-   - Password: `Admin@123`
+   - Password: `Admin@1234`
 3. Click "Sign in" → Redirects to `/admin/dashboard`
 
 ### Admin Panel Navigation

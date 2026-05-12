@@ -10,7 +10,7 @@
 ```bash
 curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"admin@art.com","password":"Admin@123"}'
+  -d '{"email":"admin@art.com","password":"Admin@1234"}'
 ```
 
 ### Register
@@ -105,5 +105,5 @@ All error responses follow this format:
 ## Seeded Admin User
 
 **Email**: `admin@art.com`
-**Password**: `Admin@123`
+**Password**: `Admin@1234`
 **Role**: `ADMIN`
